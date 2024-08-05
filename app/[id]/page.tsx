@@ -11,12 +11,8 @@ const page = ({ params }: { params: { id: string } }) => {
   const handleDownload = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     downloadPDF(
-      `certificates_and_mega/${Name.split(" ")[0].toLocaleLowerCase()}.pdf`,
+      `@/certificates_and_mega/${Name.split(" ")[0].toLocaleLowerCase()}.pdf`,
       `${Name.split(" ")[0]}'s Certificate.pdf`
-    );
-    window.open(
-      `certificates_and_mega/${Name.split(" ")[0].toLocaleLowerCase()}.pdf`,
-      "_blank"
     );
   };
   return (
@@ -45,7 +41,8 @@ const page = ({ params }: { params: { id: string } }) => {
                 onClick={(e) => handleDownload(e)}
                 className="text-[#ffba07] font-bold"
               >
-                {Name}'s Certificate
+                {Name}
+                {`'s`} Certificate
               </button>
             </h2>
           </div>
@@ -94,8 +91,8 @@ const page = ({ params }: { params: { id: string } }) => {
             <Image
               src="html.svg"
               alt="html"
-              width={150}
-              height={150}
+              width={100}
+              height={100}
               className="rounded-md"
             />
             <h1 className="text-xl font-bold text-[#f80c0c]">HTML</h1>
@@ -104,8 +101,8 @@ const page = ({ params }: { params: { id: string } }) => {
             <Image
               src="css.svg"
               alt="css"
-              width={150}
-              height={150}
+              width={100}
+              height={100}
               className="rounded-md"
             />
             <h1 className="text-xl font-bold text-[#0099e5]">CSS</h1>
@@ -114,8 +111,8 @@ const page = ({ params }: { params: { id: string } }) => {
             <Image
               src="bootstrap.svg"
               alt="bootstrap"
-              width={150}
-              height={150}
+              width={100}
+              height={100}
               className="rounded-md"
             />
             <h1 className="text-xl font-bold text-[#6610f2]">Bootstrap</h1>
@@ -124,8 +121,8 @@ const page = ({ params }: { params: { id: string } }) => {
             <Image
               src="javascript.svg"
               alt="javascript"
-              width={150}
-              height={150}
+              width={100}
+              height={100}
               className="rounded-md"
             />
             <h1 className="text-xl font-bold text-[#e0cf11]">Javascript</h1>
@@ -134,8 +131,8 @@ const page = ({ params }: { params: { id: string } }) => {
             <Image
               src="git.svg"
               alt="git"
-              width={150}
-              height={150}
+              width={100}
+              height={100}
               className="rounded-md"
             />
             <h1 className="text-xl text-[#3E2C00]">Version Control(Git)</h1>
@@ -144,8 +141,8 @@ const page = ({ params }: { params: { id: string } }) => {
             <Image
               src="jquery.svg"
               alt="jquery"
-              width={150}
-              height={150}
+              width={100}
+              height={100}
               className="rounded-md"
             />
             <h1 className="text-xl font-bold text-[#0769ad]">Jquery</h1>
@@ -173,7 +170,7 @@ const page = ({ params }: { params: { id: string } }) => {
               <Image src="tiktok.svg" alt="" width={50} height={50} />
             </Link>
             <Link href="https://www.linkedin.com/company/yotor-acadamy/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BG6c7tiDCSUCX09YJ5WEYMQ%3D%3D">
-              <Image src="linkedin.svg" alt="" width={50} height={50} />
+              <Image src="Linkedin.svg" alt="" width={50} height={50} />
             </Link>
           </div>
         </div>

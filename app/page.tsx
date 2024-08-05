@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { studentList } from "./constants";
 
 export default function Home() {
-  const [valid, setValid] = useState<Boolean>();
+  const [valid, setValid] = useState<Boolean>(true);
   const [nameInput, setNameInput] = useState("");
   const router = useRouter();
   const handleSubmit = () => {
@@ -66,7 +66,7 @@ export default function Home() {
         </div>
         {!valid && (
           <section className="flex flex-col items-center gap-3 bg-green-600 rounded-md px-10 py-3">
-            Seems like you have entered Invalid or persons name that hasn't
+            Seems like you have entered Invalid or persons name that hasn{`'`}t
             learnt in yotor, make sure to write in the format -{`>`} John Doe
             Bob
             <button
