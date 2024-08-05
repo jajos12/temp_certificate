@@ -154,26 +154,41 @@ const page = ({ params }: { params: { id: string } }) => {
             Contact Us
           </h1>
           <div className="flex gap-8">
-            <Link href="https://youtube.com/@yotor-w3f?si=Ngt_ddQgAOxum023">
+            <Link
+              href="https://youtube.com/@yotor-w3f?si=Ngt_ddQgAOxum023"
+              target="_blank"
+            >
               <Image src="youtube.svg" alt="" width={50} height={50} />
             </Link>
-            <Link href="https://www.facebook.com/yotor.381964">
+            <Link href="https://www.facebook.com/yotor.381964" target="_blank">
               <Image src="facebook.svg" alt="" width={50} height={50} />
             </Link>
-            <Link href="">
+            <Link href="" target="_blank">
               <Image src="telegram.svg" alt="" width={50} height={50} />
             </Link>
-            <Link href="https://x.com/yotorcoder/status/1818629927975157922?t=uuRau2bxgmb-rpKHHWNJPg&s=19">
+            <Link
+              href="https://x.com/yotorcoder/status/1818629927975157922?t=uuRau2bxgmb-rpKHHWNJPg&s=19"
+              target="_blank"
+            >
               <Image src="twitter.svg" alt="" width={50} height={50} />
             </Link>
-            <Link href="https://www.tiktok.com/@yotor934?_t=8oI7atl32Mo&_r=1">
+            <Link
+              href="https://www.tiktok.com/@yotor934?_t=8oI7atl32Mo&_r=1"
+              target="_blank"
+            >
               <Image src="tiktok.svg" alt="" width={50} height={50} />
             </Link>
-            <Link href="https://www.linkedin.com/company/yotor-acadamy/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BG6c7tiDCSUCX09YJ5WEYMQ%3D%3D">
+            <Link
+              href="https://www.linkedin.com/company/yotor-acadamy/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BG6c7tiDCSUCX09YJ5WEYMQ%3D%3D"
+              target="_blank"
+            >
               <Image src="Linkedin.svg" alt="" width={50} height={50} />
             </Link>
           </div>
         </div>
+        <p className="text-center text-[10px]">
+          &#64; 2024 Yotor, All rights reserved
+        </p>
       </section>
     </>
   );

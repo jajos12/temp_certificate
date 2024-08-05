@@ -64,6 +64,7 @@ export default function Home() {
             </button>
           </div>
         </div>
+        {/* Error Display field */}
         {!valid && (
           <section className="flex flex-col items-center gap-3 bg-green-600 rounded-md px-10 py-3">
             Seems like you have entered Invalid or persons name that hasn{`'`}t
@@ -79,9 +80,10 @@ export default function Home() {
             </button>
           </section>
         )}
+        <p className="text-center text-[10px]">
+          &#64; 2024 Yotor, All rights reserved
+        </p>
       </section>
-
-      {/* Error Display field */}
     </main>
   );
 }
