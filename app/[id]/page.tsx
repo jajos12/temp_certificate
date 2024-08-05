@@ -29,7 +29,7 @@ const page = ({ params }: { params: { id: string } }) => {
         <div className="flex flex-col justify items-center-between gap-5 lg:flex-row">
           <div className="flex flex-col gap-6">
             <Image
-              src={`/certificates/${Name.split(
+              src={`/certificates_and_mega/${Name.split(
                 " "
               )[0].toLocaleLowerCase()}.png`}
               alt="certification"
