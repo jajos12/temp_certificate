@@ -1,113 +1,87 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { studentList } from "./constants";
 
 export default function Home() {
+  const [valid, setValid] = useState<Boolean>();
+  const [nameInput, setNameInput] = useState("");
+  const router = useRouter();
+  const handleSubmit = () => {
+    if (nameInput) {
+      studentList.map((item) => {
+        item.name == nameInput ? setValid(true) : setValid(false);
+        item.name == nameInput
+          ? router.push(
+              `/${item.name.replaceAll(" ", "_").toLocaleLowerCase()}`
+            )
+          : "";
+      });
+    }
+  };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      {/* Input field */}
+      <section
+        className={clsx(
+          "flex flex-col items-center input gap-10 w-screen h-screen text-white p-10 justify-center"
+        )}
+      >
+        <div className="flex flex-col gap-5 items-center">
+          <Image src="logo.svg" alt="logo" width={120} height={40} />
+          <h1 className="text-3xl font-extrabold">
+            <span className="text-[#ffba07]">Yotor</span> Academy
+          </h1>
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
+        <div className="flex justify-center items-center bg-[#ffb90781] px-8 py-2 rounded-xl text-sm">
+          Temporary page for verifying claimed certificates
+        </div>
+        <div className="flex flex-col items-center justify-center gap-5 mt-10 font-thin">
+          <h1 className="text-2xl font-bold">Welcome There ✋</h1>
+          <p className="flex justify-center items-center">
+            You can Enter the name of the person you want to verify has
+            successfully finished our front end boot camp cohort-1
           </p>
-        </a>
+          <div className="flex flex-col gap-4 mt-3">
+            <h3 className="text-xl font-bold text-[#ffba07]">Full Name</h3>
+            <label htmlFor="name" className="flex gap-5">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className="bg-[#eee] rounded-lg w-[100%] h-12 text-black p-3"
+                onChange={(e) => setNameInput(e.target.value)}
+              />
+            </label>
+            <button
+              onClick={handleSubmit}
+              className="bg-[#ffba07] text-center px-4 py-2 font-medium rounded-md"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+        {!valid && (
+          <section className="flex flex-col items-center gap-3 bg-green-600 rounded-md px-10 py-3">
+            Seems like you have entered Invalid or persons name that hasn't
+            learnt in yotor, make sure to write in the format -{`>`} John Doe
+            Bob
+            <button
+              className="bg-red-600 w-[200px] rounded-lg"
+              onClick={(e) => {
+                setValid(true);
+              }}
+            >
+              close
+            </button>
+          </section>
+        )}
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {/* Error Display field */}
     </main>
   );
 }
