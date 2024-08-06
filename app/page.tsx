@@ -43,7 +43,7 @@ export default function Home() {
         )}
       >
         <div className="flex flex-col gap-5 items-center">
-          <Image src="logo.svg" alt="logo" width={120} height={40} />
+          <Image src="Logo.svg" alt="logo" width={120} height={40} />
           <h1 className="text-3xl font-extrabold">
             <span className="text-[#ffba07]">Yotor</span> Academy
           </h1>
