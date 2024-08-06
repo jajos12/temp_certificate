@@ -31,7 +31,7 @@ const page = ({ params }: { params: { id: string } }) => {
             />
             <h2 className="text-xl text-center text-[#45c245] hover:border-b-2 hover:border-[#47db47] transition duration-200 delay-75 ease-in-out">
               <Link
-                href={studentList[studentIndex].certificate}
+                href={studentList[studentIndex - 1].certificate}
                 download={`${Name.split(
                   " "
                 )[0].toLowerCase()}'s certificate.pdf`}
@@ -50,10 +50,10 @@ const page = ({ params }: { params: { id: string } }) => {
               </span>
             </h3>
             <div className="flex gap-10">
-              <Link href={studentList[studentIndex].github}>
+              <Link href={studentList[studentIndex - 1].github}>
                 <Image src="Github.svg" alt="github" width={40} height={40} />
               </Link>
-              <Link href={studentList[studentIndex].linkedin}>
+              <Link href={studentList[studentIndex - 1].linkedin}>
                 <Image
                   src="Linkedin.svg"
                   alt="linkedin"
@@ -74,7 +74,7 @@ const page = ({ params }: { params: { id: string } }) => {
             />
             <h2 className="font-medium ">
               The last version of the{" "}
-              <Link href={studentList[studentIndex].megaUrl}>
+              <Link href={studentList[studentIndex - 1].megaUrl}>
                 <span className="text-[#45c245] font-mono">mega project</span>{" "}
               </Link>
               <span className="text-[#ffba07] font-semibold">
