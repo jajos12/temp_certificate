@@ -1,25 +1,37 @@
 "use client";
+import { useToast } from "@/components/ui/use-toast";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { studentList } from "./constants";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [valid, setValid] = useState<Boolean>(true);
   const [nameInput, setNameInput] = useState("");
   const router = useRouter();
+  const { toast } = useToast();
   const handleSubmit = () => {
     if (nameInput) {
-      studentList.map((item) => {
-        item.name == nameInput ? setValid(true) : setValid(false);
-        item.name == nameInput
-          ? router.push(
-              `/${item.name.replaceAll(" ", "_").toLocaleLowerCase()}`
-            )
-          : "";
+      const results = studentList.filter((item, index) => {
+        return item.name.toLowerCase() == nameInput.toLowerCase();
       });
+      if (results.length >= 1) {
+        router.push(
+          `/${results[0].name.replaceAll(" ", "_").toLocaleLowerCase()}_${
+            results[0].index
+          }`
+        );
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Wrong Name",
+          description: "make sure you enter the name in the format John Doe",
+        });
+      }
     }
   };
   return (
@@ -56,16 +68,16 @@ export default function Home() {
                 onChange={(e) => setNameInput(e.target.value)}
               />
             </label>
-            <button
+            <Button
               onClick={handleSubmit}
               className="bg-[#ffba07] text-center px-4 py-2 font-medium rounded-md"
             >
               Submit
-            </button>
+            </Button>
           </div>
         </div>
         {/* Error Display field */}
-        {!valid && (
+        {/* {!valid && (
           <section className="flex flex-col items-center gap-3 bg-green-600 rounded-md px-10 py-3">
             Seems like you have entered Invalid or persons name that hasn{`'`}t
             learnt in yotor, make sure to write in the format -{`>`} John Doe
@@ -79,7 +91,7 @@ export default function Home() {
               close
             </button>
           </section>
-        )}
+        )} */}
         <p className="text-center text-[10px]">
           &#64; 2024 Yotor, All rights reserved
         </p>

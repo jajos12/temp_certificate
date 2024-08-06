@@ -2,19 +2,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import downloadPDF from "../utils/downloadPdf";
+import { studentList } from "../constants";
 const page = ({ params }: { params: { id: string } }) => {
   const Name = params.id
     .replaceAll("_", " ")
     .split(" ")
     .map((item) => item[0].toUpperCase() + item.slice(1))
     .join(" ");
-  const handleDownload = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    downloadPDF(
-      `@/certificates_and_mega/${Name.split(" ")[0].toLocaleLowerCase()}.pdf`,
-      `${Name.split(" ")[0]}'s Certificate.pdf`
-    );
-  };
+  const studentIndex = parseInt(Name[Name.length - 1]);
   return (
     <>
       <section className="flex flex-col gap-12 p-10 items-center bg-black text-white">
@@ -29,31 +24,43 @@ const page = ({ params }: { params: { id: string } }) => {
         <div className="flex flex-col justify items-center-between gap-5 lg:flex-row">
           <div className="flex flex-col gap-6">
             <Image
-              src={`/certificates_and_mega/${Name.split(
-                " "
-              )[0].toLocaleLowerCase()}.png`}
+              src={`/certificates_and_mega/all.png`}
               alt="certification"
               width={500}
               height={500}
             />
             <h2 className="text-xl text-center text-[#45c245] hover:border-b-2 hover:border-[#47db47] transition duration-200 delay-75 ease-in-out">
-              <button
-                onClick={(e) => handleDownload(e)}
+              <Link
+                href={studentList[studentIndex].certificate}
+                download={`${Name.split(
+                  " "
+                )[0].toLowerCase()}'s certificate.pdf`}
                 className="text-[#ffba07] font-bold"
               >
-                {Name}
+                {Name.split(" ").slice(0, 2).join(" ")}
                 {`'s`} Certificate
-              </button>
+              </Link>
             </h2>
           </div>
           <div className="flex flex-col gap-4 justify-center items-center p-4">
             <h3 className="text-nowrap">
               Meet{" "}
-              <span className="text-lg font-mono text-[#ffba07]">{Name}</span>
+              <span className="text-lg font-mono text-[#ffba07]">
+                {Name.split(" ").slice(0, 2).join(" ")}
+              </span>
             </h3>
             <div className="flex gap-10">
-              <Image src="Github.svg" alt="github" width={40} height={40} />
-              <Image src="Linkedin.svg" alt="linkedin" width={40} height={40} />
+              <Link href={studentList[studentIndex].github}>
+                <Image src="Github.svg" alt="github" width={40} height={40} />
+              </Link>
+              <Link href={studentList[studentIndex].linkedin}>
+                <Image
+                  src="Linkedin.svg"
+                  alt="linkedin"
+                  width={40}
+                  height={40}
+                />
+              </Link>
             </div>
           </div>
           <div>
@@ -67,11 +74,13 @@ const page = ({ params }: { params: { id: string } }) => {
             />
             <h2 className="font-medium ">
               The last version of the{" "}
-              <Link href="https://ruthless134.github.io/YotorFinal/">
+              <Link href={studentList[studentIndex].megaUrl}>
                 <span className="text-[#45c245] font-mono">mega project</span>{" "}
               </Link>
-              <span className="text-[#ffba07] font-semibold">{Name}</span> has
-              done!
+              <span className="text-[#ffba07] font-semibold">
+                {Name.split(" ").slice(0, 2).join(" ")}
+              </span>{" "}
+              has done!
             </h2>
           </div>
         </div>
@@ -95,7 +104,9 @@ const page = ({ params }: { params: { id: string } }) => {
               height={100}
               className="rounded-md"
             />
-            <h1 className="text-xl font-bold text-[#f80c0c]">HTML</h1>
+            <h1 className="text-xl font-bold text-[#f80c0c] sm:text-lg">
+              HTML
+            </h1>
           </div>
           <div className="flex flex-col gap-2 items-center">
             <Image
@@ -105,7 +116,7 @@ const page = ({ params }: { params: { id: string } }) => {
               height={100}
               className="rounded-md"
             />
-            <h1 className="text-xl font-bold text-[#0099e5]">CSS</h1>
+            <h1 className="text-xl font-bold text-[#0099e5] sm:text-lg">CSS</h1>
           </div>
           <div className="flex flex-col gap-2 items-center">
             <Image
@@ -115,7 +126,9 @@ const page = ({ params }: { params: { id: string } }) => {
               height={100}
               className="rounded-md"
             />
-            <h1 className="text-xl font-bold text-[#6610f2]">Bootstrap</h1>
+            <h1 className="text-xl font-bold text-[#6610f2] sm:text-lg">
+              Bootstrap
+            </h1>
           </div>
           <div className="flex flex-col gap-2 items-center">
             <Image
@@ -125,7 +138,9 @@ const page = ({ params }: { params: { id: string } }) => {
               height={100}
               className="rounded-md"
             />
-            <h1 className="text-xl font-bold text-[#e0cf11]">Javascript</h1>
+            <h1 className="text-xl font-bold text-[#e0cf11] sm:text-lg">
+              Javascript
+            </h1>
           </div>
           <div className="flex flex-col gap-2 items-center">
             <Image
@@ -135,7 +150,9 @@ const page = ({ params }: { params: { id: string } }) => {
               height={100}
               className="rounded-md"
             />
-            <h1 className="text-xl text-[#3E2C00]">Version Control(Git)</h1>
+            <h1 className="text-xl text-[#3E2C00] sm:text-lg">
+              Version Control(Git)
+            </h1>
           </div>
           <div className="flex flex-col gap-2 items-center">
             <Image
@@ -145,7 +162,9 @@ const page = ({ params }: { params: { id: string } }) => {
               height={100}
               className="rounded-md"
             />
-            <h1 className="text-xl font-bold text-[#0769ad]">Jquery</h1>
+            <h1 className="md:text-xl font-bold text-[#0769ad] text-lg">
+              Jquery
+            </h1>
           </div>
         </div>
 
