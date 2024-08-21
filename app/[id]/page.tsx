@@ -32,6 +32,7 @@ const page = ({ params }: { params: { id: string } }) => {
             <h2 className="text-xl text-center text-[#45c245] hover:border-b-2 hover:border-[#47db47] transition duration-200 delay-75 ease-in-out">
               <Link
                 href={studentList[studentIndex - 1].certificate}
+                target="_blank"
                 download={`${Name.split(
                   " "
                 )[0].toLowerCase()}'s certificate.pdf`}
@@ -60,6 +61,13 @@ const page = ({ params }: { params: { id: string } }) => {
                   width={40}
                   height={40}
                 />
+              </Link>
+              <Link
+                href={studentList[studentIndex - 1].cv}
+                download={`${Name.split(" ")[0].toLowerCase()}'s cv.pdf`}
+                target="_blank"
+              >
+                <Image src="/cv.png" alt="resume" width={40} height={40} />
               </Link>
             </div>
           </div>
