@@ -97,7 +97,8 @@ const page = ({ params }: { params: { id: string } }) => {
             Further Information
           </h1>
           <p className="font-sans text-gray-300">
-            Through Out the two month boot-camp, Ruth has learned about the
+            Through Out the two month boot-camp,{" "}
+            {Name.split(" ").slice(0, 2).join(" ")} has learned about the
             fundamentals web development through the well organized courses on
             the following topics:
           </p>
