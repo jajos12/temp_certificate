@@ -97,10 +97,10 @@ const page = ({ params }: { params: { id: string } }) => {
             Further Information
           </h1>
           <p className="font-sans text-gray-300">
-            Through Out the two month boot-camp,{" "}
-            {Name.split(" ").slice(0, 2).join(" ")} has learned about the
-            fundamentals web development through the well organized courses on
-            the following topics:
+            During the two-month bootcamp,{" "}
+            {Name.split(" ").slice(0, 2).join(" ")} has gained a comprehensive
+            understanding of the fundamentals of web development through the
+            well-structured curriculum covering the following topics:
           </p>
         </div>
 
